@@ -6,6 +6,8 @@ namespace ZeroWasteKitchen
 {
     public partial class MainForm : Form
     {
+
+        // Main inventory dashboard
         private List<FoodItem> inventory = new List<FoodItem>();
         public MainForm()
         {

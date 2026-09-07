@@ -39,6 +39,7 @@
             dtpExpiryDate = new DateTimePicker();
             btnAddItem = new Button();
             dgvInventory = new DataGridView();
+            btnDeleteItem = new Button();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             SuspendLayout();
@@ -143,11 +144,21 @@
             dgvInventory.Size = new Size(240, 150);
             dgvInventory.TabIndex = 10;
             // 
+            // btnDeleteItem
+            // 
+            btnDeleteItem.Location = new Point(223, 244);
+            btnDeleteItem.Name = "btnDeleteItem";
+            btnDeleteItem.Size = new Size(75, 23);
+            btnDeleteItem.TabIndex = 11;
+            btnDeleteItem.Text = "Delete Item";
+            btnDeleteItem.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 561);
+            Controls.Add(btnDeleteItem);
             Controls.Add(dgvInventory);
             Controls.Add(btnAddItem);
             Controls.Add(dtpExpiryDate);
@@ -181,5 +192,6 @@
         private DateTimePicker dtpExpiryDate;
         private Button btnAddItem;
         private DataGridView dgvInventory;
+        private Button btnDeleteItem;
     }
 }
