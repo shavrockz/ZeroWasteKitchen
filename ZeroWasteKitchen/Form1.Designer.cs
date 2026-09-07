@@ -152,6 +152,7 @@
             btnDeleteItem.TabIndex = 11;
             btnDeleteItem.Text = "Delete Item";
             btnDeleteItem.UseVisualStyleBackColor = true;
+            btnDeleteItem.Click += btnDeleteItem_Click;
             // 
             // MainForm
             // 

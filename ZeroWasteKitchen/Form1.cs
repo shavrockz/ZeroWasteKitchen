@@ -33,7 +33,7 @@ namespace ZeroWasteKitchen
             FoodItem newItem = new FoodItem(txtItemName.Text, cmbCategory.Text, (int)numQuantity.Value, dtpExpiryDate.Value);
             inventory.Add(newItem);
 
-            inventory=inventory.OrderBy(item=>item.ExpirationDate).ToList();
+            inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();
 
             dgvInventory.DataSource = null;
             dgvInventory.DataSource = inventory;
@@ -62,6 +62,25 @@ namespace ZeroWasteKitchen
 
                 }
             }
+        }
+
+        private void btnDeleteItem_Click(object sender, EventArgs e)
+        {
+            if(dgvInventory.CurrentRow == null)
+            {
+                MessageBox.Show("Please select an item to delete.");
+                return;
+            }
+
+            FoodItem selectedItem = (FoodItem)dgvInventory.CurrentRow.DataBoundItem;
+
+            inventory.Remove(selectedItem);
+
+            dgvInventory.DataSource = null;
+            dgvInventory.DataSource = inventory;
+
+            MessageBox.Show("Item deleted successfully!");
+
         }
     }
 }
