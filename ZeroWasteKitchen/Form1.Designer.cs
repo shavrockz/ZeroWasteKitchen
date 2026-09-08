@@ -41,6 +41,8 @@
             dgvInventory = new DataGridView();
             btnDeleteItem = new Button();
             btnUpdateItem = new Button();
+            label5 = new Label();
+            cmbFilterCategory = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             SuspendLayout();
@@ -83,7 +85,7 @@
             // cmbCategory
             // 
             cmbCategory.FormattingEnabled = true;
-            cmbCategory.Items.AddRange(new object[] { "Dairy", "", "Produce", "", "Pantry", "", "Frozen", "", "Other" });
+            cmbCategory.Items.AddRange(new object[] { "Dairy", "Produce", "Pantry", "Frozen", "Other" });
             cmbCategory.Location = new Point(121, 123);
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(121, 23);
@@ -165,11 +167,32 @@
             btnUpdateItem.UseVisualStyleBackColor = true;
             btnUpdateItem.Click += btnUpdateItem_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(45, 469);
+            label5.Name = "label5";
+            label5.Size = new Size(100, 15);
+            label5.TabIndex = 13;
+            label5.Text = "Filter by Category";
+            // 
+            // cmbFilterCategory
+            // 
+            cmbFilterCategory.FormattingEnabled = true;
+            cmbFilterCategory.Items.AddRange(new object[] { "All", "Dairy", "Produce", "Pantry", "Frozen", "Other" });
+            cmbFilterCategory.Location = new Point(151, 461);
+            cmbFilterCategory.Name = "cmbFilterCategory";
+            cmbFilterCategory.Size = new Size(121, 23);
+            cmbFilterCategory.TabIndex = 14;
+            cmbFilterCategory.SelectedIndexChanged += cmbFilterCategory_SelectedIndexChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 561);
+            Controls.Add(cmbFilterCategory);
+            Controls.Add(label5);
             Controls.Add(btnUpdateItem);
             Controls.Add(btnDeleteItem);
             Controls.Add(dgvInventory);
@@ -207,5 +230,7 @@
         private DataGridView dgvInventory;
         private Button btnDeleteItem;
         private Button btnUpdateItem;
+        private Label label5;
+        private ComboBox cmbFilterCategory;
     }
 }

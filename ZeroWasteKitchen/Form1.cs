@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text.Json;
 
 namespace ZeroWasteKitchen
 {
@@ -9,11 +10,14 @@ namespace ZeroWasteKitchen
 
         // Main inventory dashboard
         private List<FoodItem> inventory = new List<FoodItem>();
+        private string filePath = "inventory.json";
         public MainForm()
         {
             InitializeComponent();
 
             dgvInventory.CellFormatting += dgvInventory_CellFormatting;
+
+            LoadData();
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -32,6 +36,7 @@ namespace ZeroWasteKitchen
 
             FoodItem newItem = new FoodItem(txtItemName.Text, cmbCategory.Text, (int)numQuantity.Value, dtpExpiryDate.Value);
             inventory.Add(newItem);
+            SaveData();
 
             inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();
 
@@ -75,6 +80,7 @@ namespace ZeroWasteKitchen
             FoodItem selectedItem = (FoodItem)dgvInventory.CurrentRow.DataBoundItem;
 
             inventory.Remove(selectedItem);
+            SaveData();
 
             dgvInventory.DataSource = null;
             dgvInventory.DataSource = inventory;
@@ -85,7 +91,7 @@ namespace ZeroWasteKitchen
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
         {
-            if(dgvInventory.CurrentRow == null)
+            if (dgvInventory.CurrentRow == null)
             {
                 MessageBox.Show("Please select an item to update.");
                 return;
@@ -99,6 +105,8 @@ namespace ZeroWasteKitchen
             selectedItem.Quantity = (int)numQuantity.Value;
             selectedItem.ExpirationDate = dtpExpiryDate.Value;
 
+            SaveData();
+
             inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();
 
             dgvInventory.DataSource = null;
@@ -106,5 +114,55 @@ namespace ZeroWasteKitchen
 
             MessageBox.Show("Item updated successfully!");
         }
+
+        private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbFilterCategory.Text =="All")
+            {
+                dgvInventory.DataSource = null;
+                dgvInventory.DataSource = inventory;
+            }
+            else
+            {
+                var filteredItems = inventory.Where(item => item.Category == cmbFilterCategory.Text).ToList();
+                dgvInventory.DataSource = null;
+                dgvInventory.DataSource = filteredItems;
+            }
+        }
+
+        private void SaveData()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(inventory);
+                File.WriteAllText(filePath, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving data: {ex.Message}");
+            }
+        }
+
+        private void LoadData()
+        {
+            try 
+            {
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    inventory = JsonSerializer.Deserialize<List<FoodItem>>(json) ?? new List<FoodItem>();
+
+                    inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();
+
+                    dgvInventory.DataSource = null;
+                    dgvInventory.DataSource = inventory;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}");
+            }
+        }
     }
+
 }
