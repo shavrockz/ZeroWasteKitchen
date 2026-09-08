@@ -146,6 +146,7 @@
             dgvInventory.ReadOnly = true;
             dgvInventory.Size = new Size(240, 150);
             dgvInventory.TabIndex = 10;
+            dgvInventory.CellClick += dgvInventory_CellClick;
             // 
             // btnDeleteItem
             // 

@@ -28,6 +28,12 @@ namespace ZeroWasteKitchen
                 return;
             }
 
+            if (numQuantity.Value <= 0)
+            {
+                MessageBox.Show("Quantity must be greater than 0.");
+                return;
+            }
+
             if (cmbCategory.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a category.");
@@ -43,8 +49,13 @@ namespace ZeroWasteKitchen
             dgvInventory.DataSource = null;
             dgvInventory.DataSource = inventory;
 
+            txtItemName.Clear();
+            cmbCategory.SelectedIndex = -1;
+            numQuantity.Value = numQuantity.Minimum;
+            dtpExpiryDate.Value = DateTime.Today;
 
             MessageBox.Show("Item added successfully!");
+
         }
 
         private void dgvInventory_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -117,7 +128,7 @@ namespace ZeroWasteKitchen
 
         private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbFilterCategory.Text =="All")
+            if (cmbFilterCategory.Text == "All")
             {
                 dgvInventory.DataSource = null;
                 dgvInventory.DataSource = inventory;
@@ -145,7 +156,7 @@ namespace ZeroWasteKitchen
 
         private void LoadData()
         {
-            try 
+            try
             {
                 if (File.Exists(filePath))
                 {
@@ -161,6 +172,18 @@ namespace ZeroWasteKitchen
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading data: {ex.Message}");
+            }
+        }
+
+        private void dgvInventory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                FoodItem selectedItem = (FoodItem)dgvInventory.Rows[e.RowIndex].DataBoundItem;
+                txtItemName.Text = selectedItem.Name;
+                cmbCategory.Text = selectedItem.Category;
+                numQuantity.Value = selectedItem.Quantity;
+                dtpExpiryDate.Value = selectedItem.ExpirationDate;
             }
         }
     }
