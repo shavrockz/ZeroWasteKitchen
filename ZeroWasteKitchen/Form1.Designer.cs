@@ -40,6 +40,7 @@
             btnAddItem = new Button();
             dgvInventory = new DataGridView();
             btnDeleteItem = new Button();
+            btnUpdateItem = new Button();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvInventory).BeginInit();
             SuspendLayout();
@@ -154,11 +155,22 @@
             btnDeleteItem.UseVisualStyleBackColor = true;
             btnDeleteItem.Click += btnDeleteItem_Click;
             // 
+            // btnUpdateItem
+            // 
+            btnUpdateItem.Location = new Point(337, 244);
+            btnUpdateItem.Name = "btnUpdateItem";
+            btnUpdateItem.Size = new Size(82, 23);
+            btnUpdateItem.TabIndex = 12;
+            btnUpdateItem.Text = "Update Item";
+            btnUpdateItem.UseVisualStyleBackColor = true;
+            btnUpdateItem.Click += btnUpdateItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 561);
+            Controls.Add(btnUpdateItem);
             Controls.Add(btnDeleteItem);
             Controls.Add(dgvInventory);
             Controls.Add(btnAddItem);
@@ -194,5 +206,6 @@
         private Button btnAddItem;
         private DataGridView dgvInventory;
         private Button btnDeleteItem;
+        private Button btnUpdateItem;
     }
 }

@@ -66,7 +66,7 @@ namespace ZeroWasteKitchen
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-            if(dgvInventory.CurrentRow == null)
+            if (dgvInventory.CurrentRow == null)
             {
                 MessageBox.Show("Please select an item to delete.");
                 return;
@@ -81,6 +81,30 @@ namespace ZeroWasteKitchen
 
             MessageBox.Show("Item deleted successfully!");
 
+        }
+
+        private void btnUpdateItem_Click(object sender, EventArgs e)
+        {
+            if(dgvInventory.CurrentRow == null)
+            {
+                MessageBox.Show("Please select an item to update.");
+                return;
+            }
+
+            FoodItem selectedItem = (FoodItem)dgvInventory.CurrentRow.DataBoundItem;
+
+            // Update the selected item's properties
+            selectedItem.Name = txtItemName.Text;
+            selectedItem.Category = cmbCategory.Text;
+            selectedItem.Quantity = (int)numQuantity.Value;
+            selectedItem.ExpirationDate = dtpExpiryDate.Value;
+
+            inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();
+
+            dgvInventory.DataSource = null;
+            dgvInventory.DataSource = inventory;
+
+            MessageBox.Show("Item updated successfully!");
         }
     }
 }
