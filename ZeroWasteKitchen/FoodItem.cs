@@ -11,6 +11,14 @@ namespace ZeroWasteKitchen
         public int Quantity { get; set; }
         public DateTime ExpirationDate { get; set; }
 
+        public int DaysRemaining
+        {
+            get
+            {
+                return GetDaysUntilExpiration();
+            }
+        }
+
         public string Status
         {
             get

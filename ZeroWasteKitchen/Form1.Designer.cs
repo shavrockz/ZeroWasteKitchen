@@ -144,7 +144,7 @@
             dgvInventory.Location = new Point(117, 285);
             dgvInventory.Name = "dgvInventory";
             dgvInventory.ReadOnly = true;
-            dgvInventory.Size = new Size(240, 150);
+            dgvInventory.Size = new Size(500, 150);
             dgvInventory.TabIndex = 10;
             dgvInventory.CellClick += dgvInventory_CellClick;
             // 

@@ -90,14 +90,20 @@ namespace ZeroWasteKitchen
 
             FoodItem selectedItem = (FoodItem)dgvInventory.CurrentRow.DataBoundItem;
 
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
             inventory.Remove(selectedItem);
             SaveData();
 
             dgvInventory.DataSource = null;
             dgvInventory.DataSource = inventory;
 
-            MessageBox.Show("Item deleted successfully!");
-
+                MessageBox.Show("Item deleted successfully!");            
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
