@@ -4,13 +4,8 @@ using System.Text;
 
 namespace ZeroWasteKitchen
 {
-    public class FoodItem
+    public class FoodItem : PantryItem
     {
-        public string Name { get; set; }
-        public string Category { get; set; }
-        public int Quantity { get; set; }
-        public DateTime ExpirationDate { get; set; }
-
         public int DaysRemaining
         {
             get
@@ -27,12 +22,9 @@ namespace ZeroWasteKitchen
             }
         }
 
-        public FoodItem(string name, string category, int quantity, DateTime expirationDate)
+        public FoodItem(string name, string category, int quantity, DateTime expirationDate) : base(name, category, quantity, expirationDate)
         {
-            Name = name;
-            Category = category;
-            Quantity = quantity;
-            ExpirationDate = expirationDate;
+            
         }
 
         public int GetDaysUntilExpiration()

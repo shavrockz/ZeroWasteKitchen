@@ -8,14 +8,14 @@ namespace ZeroWasteKitchen
    public abstract class PantryItem
     {
         public string Name { get; set; }
-        public string Catergory { get; set; }
+        public string Category { get; set; }
         public int Quantity { get; set; }
         public DateTime ExpirationDate { get; set; }
 
-        public PantryItem(string name, string catergory, int quantity, DateTime expirationDate)
+        public PantryItem(string name, string category, int quantity, DateTime expirationDate)
         {
             Name = name;
-            Catergory = catergory;
+            Category = category;
             Quantity = quantity;
             ExpirationDate = expirationDate;
         }
