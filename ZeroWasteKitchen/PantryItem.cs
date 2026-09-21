@@ -19,5 +19,7 @@ namespace ZeroWasteKitchen
             Quantity = quantity;
             ExpirationDate = expirationDate;
         }
+
+        public abstract string GetStatus();
     }
 }

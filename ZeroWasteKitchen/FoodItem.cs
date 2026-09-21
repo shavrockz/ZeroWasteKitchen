@@ -32,7 +32,7 @@ namespace ZeroWasteKitchen
             return (ExpirationDate - DateTime.Today).Days;
         }
 
-        public string GetStatus()
+        public override string GetStatus()
         {
             int days = GetDaysUntilExpiration();
 
