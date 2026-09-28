@@ -53,9 +53,9 @@
             lblTitle.Font = new Font("Sans Serif Collection", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.Location = new Point(37, 23);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(806, 52);
+            lblTitle.Size = new Size(804, 52);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Zero-Waste Kitchen and Pantry Expiry Assistant";
+            lblTitle.Text = "Zero Waste Kitchen and Pantry Expiry Assistant";
             // 
             // label1
             // 
