@@ -39,7 +39,7 @@ namespace ZeroWasteKitchen
         //this calculates how many days are left before the item expires
         public int GetDaysUntilExpiration()
         {
-            return (ExpirationDate - DateTime.Today).Days;
+            return (ExpirationDate.Date - DateTime.Today).Days;
         }
 
         //Overrides the base method and decides the items expiry status

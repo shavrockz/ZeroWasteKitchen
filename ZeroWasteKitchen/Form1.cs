@@ -36,14 +36,14 @@ namespace ZeroWasteKitchen
             FoodItem newItem = new FoodItem(txtItemName.Text.Trim(), cmbCategory.Text, (int)numQuantity.Value, dtpExpiryDate.Value);
             inventory.Add(newItem);
 
+            //sorts items by expiry date so the closest expiry appears first
+            inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();
+
             //saves the updated inventory to the JSON file
             SaveData();
 
             //refreshes the DataGridView to display the latest inventory
-            RefreshInventoryGrid(inventory);
-
-            //sorts items by expiry date so the closest expiry appears first
-            inventory = inventory.OrderBy(item => item.ExpirationDate).ToList();            
+            RefreshInventoryGrid(inventory);                   
 
             //clears the input fields ready for the next item
             txtItemName.Clear();
